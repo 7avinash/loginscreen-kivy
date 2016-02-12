@@ -1,0 +1,141 @@
+<Login>:
+    carousel: carousel
+    tlogin: tb1
+    tregister: tb2
+    dis: name
+    bregister: bregister
+    canvas:
+        Color: 
+            rgba:1,1,1,1
+        Rectangle:
+            size: self.width, self.height
+            pos: 0, 0
+    BoxLayout:
+        size_hint_y: .1
+        pos_hint:{'y': .9}
+        canvas:
+            Color: 
+                rgba:0,1,1,1
+            Rectangle:
+                size: self.width, self.height
+                pos: 0, root.top - self.height
+        ToggleButton:
+            id: tb1
+            text: 'Login'
+            state: 'down'
+            group: 'carousel'
+            on_release: carousel.load_previous()
+        ToggleButton:
+            id: tb2
+            text: 'Register'
+            group: 'carousel'
+            on_release: carousel.load_next()
+    Carousel:
+        id: carousel
+        BoxLayout:
+            id: login
+            orientation: 'vertical'
+            size_hint_y: 0.3
+            pos_hint:{'y': .6}
+                
+            BoxLayout:
+                orientation:'vertical'
+                size_hint_y: 0.2
+                pos_hint:{'y': .7}
+                Label:
+                    text: 'Username:'
+                    text_size:self.size
+                    color: 0, 0, 0, 1
+                    
+                TextInput:
+                    size_hint_y: None
+                    height: '32dp'
+                Label:
+                    text: 'Password:'
+                    text_size:self.size
+                    color: 0, 0, 0, 1
+                TextInput:
+                    size_hint_y: None
+                    height: '32dp'
+                    password: True
+            Button:
+                size_hint_y:None
+                size_hint_x: .2
+                text:'Login'
+                pos_hint: {'x':.4, 'y': .6}
+                height: '48dp'
+        BoxLayout:
+            id: register
+            orientation: 'vertical'
+            size_hint_y: 0.45
+            pos_hint:{'y': .45}
+            BoxLayout:
+                orientation:'vertical'
+                size_hint_y: 0.3
+                pos_hint:{'y': .6}
+
+                Label:
+                    text: 'Name:'
+                    text_size:self.size
+                    color: 0, 0, 0, 1
+                    
+                TextInput:
+                    id: name
+                    size_hint_y: None
+                    height: '32dp'
+                    on_text: root.feed()
+                BoxLayout:
+                    size_hint_x:0.8
+                    Label:
+                        text: 'Date of Birth:'
+                        text_size:self.size
+                        size_hint_x:.3
+                        pos_hint:{'y':.25}
+                        color: 0, 0, 0, 1
+                    Spinner:
+                        background_color:1,0,0,1
+                        size_hint_y:None
+                        size_hint_x:.2
+                        text:'date'
+                        values:(str(i) for i in range(1,31))
+                        height:'32dp'
+                    Spinner:
+                        size_hint_y:None
+                        size_hint_x:.2
+                        text:'month'
+                        values:(str(i) for i in range(1,13))
+                        height:'32dp'
+                    Spinner:
+                        size_hint_y:None
+                        size_hint_x:.3
+                        text:'year'
+                        values:(str(i) for i in range(1996,2015))
+                        height:'32dp'
+                Label:
+                    text: 'Password:'
+                    text_size:self.size
+                    color: 0, 0, 0, 1
+                    
+                TextInput:
+                    size_hint_y: None
+                    height: '32dp'
+                    password:True
+                Label:
+                    text: 'Retype Password:'
+                    text_size:self.size
+                    color: 0, 0, 0, 1
+                    
+                TextInput:
+                    size_hint_y: None
+                    height: '32dp'
+                    password:True
+            Button:
+                id: bregister
+                size_hint_y:None
+                size_hint_x: .2
+                text:'Register'
+                pos_hint: {'x':.4, 'y': .6}
+                height: '48dp'
+                on_release: root.send()
+            
+                
